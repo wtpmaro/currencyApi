@@ -9,7 +9,7 @@ Funcionalities
 
 1. Admin panel
 
-Funcionality allows to download archiwal and current year rates from NBP api to SQL database. JSON files from NBP api has been deserialized using Jackson Library. 
+Funcionality allows to download archival and current year rates from NBP api to SQL database. JSON files from NBP api has been deserialized using Jackson Library. 
 Additionally, ir is opportunity to delete all rates for choosen currency or for indicated period. 
 
 Action in: RateSaveTableAController and RateSaveTableCController. 
