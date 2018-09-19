@@ -23,6 +23,12 @@ public class RateSaveTableCController {
     @Autowired
     ParamValidation paramValidation;
 
+    /** Save method - method allows to save to database mid archival rates. (2005-2017)
+     *
+     * @param start - min 2005 year, max 2017 year (period beginning)
+     * @param end - min 2005, max 2017 year (period end)
+     * @return communicate when upload has been finished successfully
+     */
 
     @PostMapping("/save")
     public String downloadRatesfromWebsiteYearly(@RequestParam int start, int end) {
@@ -45,6 +51,11 @@ public class RateSaveTableCController {
         return "adminActionAnswer";
     }
 
+
+    /** Save method - method allows to save to database bid and ask rates. (current year)
+     *
+     * @return communicate when upload has been finished successfully
+     */
     @PostMapping("/saveall")
     public String downloadRatesfromWebsiteCurrent() {
     LocalDate date = LocalDate.now();
@@ -57,13 +68,16 @@ public class RateSaveTableCController {
                     try {
                         jsonParsingToObject.setSettersAndSave(description, j, currency);
                     } catch (NullPointerException e) {
-                    } 
+                    }
                 }
             }
         return "adminActionAnswer";
         }
 
-
+    /** Currency codes
+     *
+     * @return list of currency code that are processed.
+     */
     public final List<String> currencyList() {
         List<String> list = new ArrayList<>();
         list.add("gbp");

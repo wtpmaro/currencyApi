@@ -11,8 +11,6 @@ import pl.coderslab.repository.RateRepository;
 import pl.coderslab.service.CalculatorRounding;
 import pl.coderslab.service.ParamValidation;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Date;
 
 
@@ -41,6 +39,16 @@ public class CalculatorController {
         model.addAttribute("lists", rateSaveTableCController.currencyList());
         return "calculatorForm";
     }
+
+    /** Method allows conversion PLN amount to foreign amount using choosen value date
+     *
+     * @param model
+     * @param currencyCode - currency code containing 3 signs. 
+     * @param amountToConversion - amount that user would like to exchange in PLN
+     * @param startDate - value date or earlier
+     * @param priceType - ask or mid price. It is in which price user would like to make conversion.
+     * @return amount after conversion in foreign conversion (view)
+     */
 
     @PostMapping("/buyForeign")
     public String calculator(Model model, @RequestParam String currencyCode, Double amountToConversion, String startDate, String priceType) {
@@ -94,6 +102,15 @@ public class CalculatorController {
         }
     }
 
+    /** Method allows conversion amount in foreign currency to PLN amount using choosen value date
+     *
+     * @param model
+     * @param currencyCode - currency code containing 3 signs.
+     * @param amountToConversion - amount that user would like to exchange in foreign currency
+     * @param startDate - value date or earlier
+     * @param priceType - bid or mid price. It is in which price user would like to make conversion.
+     * @return amount after conversion (view)
+     */
     @PostMapping("/buyPln")
     public String calculatorPln(Model model, @RequestParam String currencyCode, Double amountToConversion, String startDate, String priceType) {
         try {

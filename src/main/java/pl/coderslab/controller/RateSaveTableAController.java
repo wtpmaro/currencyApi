@@ -29,6 +29,12 @@ public class RateSaveTableAController {
         return "adminForm";
     }
 
+    /** Save method - method allows to save to database bid and ask archival rates. (2005-2017)
+     *
+     * @param start - min 2005 year, max 2017 year (period beginning)
+     * @param end - min 2005, max 2017 year (period end)
+     * @return communicate when upload has been finished successfully
+     */
     @PostMapping("/save")
     public String downloadRatesfromWebsiteYearly(@RequestParam int start, int end) {
         int convertedStart = paramValidation.startYear(start);
@@ -51,6 +57,10 @@ public class RateSaveTableAController {
         return "adminActionAnswer";
     }
 
+    /** Save method - method allows to save to database bid and ask rates. (current year)
+     *
+     * @return communicate when upload has been finished successfully
+     */
     @PostMapping("/saveall")
     public String downloadRatesfromWebsiteCurrent() {
         LocalDate date = LocalDate.now();

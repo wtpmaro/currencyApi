@@ -39,6 +39,7 @@ RateSaveTableCController rateSaveTableCController;
         return "chartView";
     }
 
+
     @PostMapping("")
     public String chartPerThirtyDaysPeriod(Model model, @RequestParam String currencyCode) {
 

@@ -28,7 +28,11 @@ public class RateShowControllerMid {
     @Autowired
     ParamValidation paramValidation;
 
-
+    /**Method returns newest table A for all currencies.
+     *
+     * @param model
+     * @return table A view.
+     */
     @GetMapping("/table")
     public String tableNewest(Model model) {
 
@@ -39,6 +43,7 @@ public class RateShowControllerMid {
         model.addAttribute("rates",rateRepository.findAllByEffectiveDateEqualsOrderByCurrencyCodeAsc(date));
         return "rateTableNewMid";
     }
+
 
     @GetMapping("/date")
     public String show(Model model) {
@@ -61,6 +66,14 @@ public class RateShowControllerMid {
         }
     }
 
+    /** Method that allows to return pbjects from table A for indicated period
+     *
+     * @param model
+     * @param startPeriod - beginning period
+     * @param endPeriod - end period
+     * @param currencyCode
+     * @return view of objects that qualify conditions
+     */
     @PostMapping("/period")
     public String ratesPerPeriod (Model model, @RequestParam String startPeriod, String endPeriod, String currencyCode) {
         try {
@@ -75,6 +88,14 @@ public class RateShowControllerMid {
         }
     }
 
+
+    /** Method that allows to return pbjects that mid price is greater than indicated value
+     *
+     * @param model
+     * @param midPrice - mi price greater than indicated value
+     * @param currencyCode
+     * @return view of objects that qualify conditions
+     */
     @PostMapping("/midGreater")
     public String showMidGreater (Model model, @RequestParam Double midPrice, String currencyCode) {
         if(midPrice == null) {
@@ -85,6 +106,13 @@ public class RateShowControllerMid {
         return "rateTableMid";
     }
 
+    /** Method that allows to return pbjects that mid price is lower than indicated value
+     *
+     * @param model
+     * @param midPrice - mid price lower than indicated value
+     * @param currencyCode
+     * @return view of objects that qualify conditions
+     */
     @PostMapping("/midLower")
     public String showMidLower (Model model, @RequestParam Double midPrice, String currencyCode) {
 
@@ -95,6 +123,14 @@ public class RateShowControllerMid {
         return "rateTableMid";
     }
 
+    /**  Method that allows to return pbjects in indicated mid price range
+     *
+      * @param model
+     * @param lowBarrier- low barrier of bid price
+     * @param highBarrier - high barriet of bid price
+     * @param currencyCode
+     * @return view of objects that qualify conditions
+     */
     @PostMapping("/periodMidBetween")
     public String ratesPerPeriodAskBetween (Model model, @RequestParam Double lowBarrier, Double highBarrier, String currencyCode) {
         if((lowBarrier == null) || (highBarrier==null)) {
@@ -104,6 +140,14 @@ public class RateShowControllerMid {
         return "rateTableMid";
     }
 
+    /** Method that allows to return max mid price for indicated currency in period
+     *
+     * @param model
+     * @param startDate -  beginning period
+     * @param endDate - end period
+     * @param currencyCode
+     * @return  view of objects that qualify conditions
+     */
     @PostMapping("/midMaxPerPeriod")
     public String askMaxPerPeriod (Model model, @RequestParam String startDate, String endDate, String currencyCode) {
         try {
@@ -117,6 +161,15 @@ public class RateShowControllerMid {
             return "redirect:/showA/date";
         }
     }
+
+    /** Method that allows to return min mid price for indicated currency in period
+     *
+     * @param model
+     * @param startDate - beginning period
+     * @param endDate - end period
+     * @param currencyCode
+     * @return  view of objects that qualify conditions 
+     */
 
     @PostMapping("/midMinPerPeriod")
     public String askMinPerPeriod (Model model, @RequestParam String startDate, String endDate, String currencyCode) {
