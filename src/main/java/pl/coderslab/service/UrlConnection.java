@@ -13,6 +13,12 @@ public class UrlConnection {
 
     UrlConnection(){}
 
+    /** Method coverts JSON from URL to String
+     *
+     * @param url - url address from API
+     * @return JSON in format String.
+     * @throws IOException
+     */
     public String run(String url) throws IOException {
 
         OkHttpClient client = new OkHttpClient();

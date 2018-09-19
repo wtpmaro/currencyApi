@@ -21,6 +21,12 @@ public class JsonParsingToObjectMid {
     @Autowired
     RateMidRepository rateRepository;
 
+    /** Deserialization from JSON api to object table A (archival rates)
+     *
+     * @param currency - currency code
+     * @param year  - JSON file year
+     * @return object converted from JSON
+     */
     public DescriptionTableA jsonParsing(String currency, int year) {
 
         try {
@@ -33,6 +39,12 @@ public class JsonParsingToObjectMid {
         }
     }
 
+    /** Deserialization from JSON api to object table A(current year)
+     *
+     * @param currency - currency code
+     * @param year  - JSON file current date
+     * @return object converted from JSON
+     */
     public DescriptionTableA jsonParsingCurrent(String currency, LocalDate year) {
 
         try {

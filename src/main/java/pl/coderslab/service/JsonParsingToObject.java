@@ -21,6 +21,12 @@ public class JsonParsingToObject {
     @Autowired
     RateRepository rateRepository;
 
+    /** Deserialization from JSON api to object table C (archival rates)
+     *
+     * @param currency - currency code
+     * @param year  - JSON file year
+     * @return object converted from JSON
+     */
     public Description jsonParsing(String currency, int year) {
 
         try {
@@ -34,7 +40,7 @@ public class JsonParsingToObject {
 
     }
 
-    public Description jsonParsingDaily(String currency,  LocalDate endDate) {
+/*    public Description jsonParsingDaily(String currency,  LocalDate endDate) {
 
         try {
             String urlParsing = urlConnection.run("http://api.nbp.pl/api/exchangerates/rates/c/"+currency+"/"+endDate+"/?format=json");
@@ -45,8 +51,14 @@ public class JsonParsingToObject {
             return null;
         }
 
-    }
+    }*/
 
+    /** Deserialization from JSON api to object table C(current year)
+     *
+     * @param currency - currency code
+     * @param year  - JSON file current date
+     * @return object converted from JSON
+     */
     public Description jsonParsingCurrent(String currency, LocalDate year) {
 
         try {
@@ -60,8 +72,8 @@ public class JsonParsingToObject {
 
     }
 
-
-    public void setSettersAndSave(Description description, int number, String currency) { //Additional function Validate
+    //Additional function Validate
+    public void setSettersAndSave(Description description, int number, String currency) {
         try {
             Rate rates = new Rate();
             Date effectiveDate = description.getRates().get(number).getEffectiveDate();

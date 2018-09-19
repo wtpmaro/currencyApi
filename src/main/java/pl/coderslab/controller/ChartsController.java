@@ -23,6 +23,11 @@ CreationObjectToChart creationObjectToChart;
 @Autowired
 RateSaveTableCController rateSaveTableCController;
 
+    /** 30 day chart for GBP
+     *
+     * @param model
+     * @return 30 day's chart view for GBP
+     */
     @GetMapping("")
     public String firstChart(Model model) {
 
@@ -39,7 +44,12 @@ RateSaveTableCController rateSaveTableCController;
         return "chartView";
     }
 
-
+    /** 30 day chart for indicated currency
+     *
+     * @param model
+     * @param currencyCode
+     * @return 30 day's chart view for indicated currency
+     */
     @PostMapping("")
     public String chartPerThirtyDaysPeriod(Model model, @RequestParam String currencyCode) {
 

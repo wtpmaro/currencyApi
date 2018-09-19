@@ -49,7 +49,6 @@ public class CalculatorController {
      * @param priceType - ask or mid price. It is in which price user would like to make conversion.
      * @return amount after conversion in foreign conversion (view)
      */
-
     @PostMapping("/buyForeign")
     public String calculator(Model model, @RequestParam String currencyCode, Double amountToConversion, String startDate, String priceType) {
         try {
@@ -161,9 +160,7 @@ public class CalculatorController {
         }catch (IllegalArgumentException | NullPointerException ex) {
                 return "redirect:/calculator/form";
             }
-
     }
-
 }
 
 
